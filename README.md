@@ -4,6 +4,8 @@ An easy-to-use library for generating gravatar image urls in Dart.
 
 For more information about Gravatar please visit https://gravatar.com
 
+[![Build Status](https://drone.io/github.com/blossom/gravatar/status.png)](https://drone.io/github.com/blossom/gravatar/latest)
+
 # Example
 
 	  var gravatar = new Gravatar("hello@blossom.io");
@@ -42,7 +44,3 @@ Pull requests are very welcome :)
 # Trivia
 
 This library is a by-product of our Dart efforts at [Blossom](https://www.blossom.io).
-
-# Todo
-
-* Setup Drone.io
