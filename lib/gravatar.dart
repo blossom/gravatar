@@ -16,7 +16,7 @@ class Gravatar {
   Gravatar(this._email) {
     _generateHash();
     this._hash = _generateHash();
-    this._imageUrl = "https://secure.gravatar.com/avatar/$this._hash";
+    this._imageUrl = "https://secure.gravatar.com/avatar/${this._hash}";
   }
 
   /**
