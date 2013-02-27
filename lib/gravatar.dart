@@ -2,6 +2,12 @@ library gravatar;
 
 import 'dart:crypto';
 
+/**
+ * An easy-to-use library for generating Gravatar image urls in Dart.
+ *
+ *     var gravatar = new Gravatar("hello@blossom.io");
+ *     gravatar.imageUrl(); // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
+ */
 class Gravatar {
   String _email;
   String _hash;
@@ -9,20 +15,32 @@ class Gravatar {
 
   Gravatar(this._email) {
     _generateHash();
+    this._hash = _generateHash();
+    this._imageUrl = "https://secure.gravatar.com/avatar/$this.hash";
   }
 
-  void _generateHash() {
-    // as described in https://en.gravatar.com/site/implement/hash/
-    // the email gets trimmed and lowered before generating the hash
+  /**
+   * Returns a an MD5 hash of the given email address.
+   *
+   * As described in https://en.gravatar.com/site/implement/hash/
+   * the given email address gets trimmed and lowered before generating the hash
+   */
+  String _generateHash() {
     String preparedEmail = (this._email.trim()).toLowerCase();
     List digest = (new MD5()..add(preparedEmail.charCodes)).close();
-    this._hash = CryptoUtils.bytesToHex(digest);
-    this._imageUrl = "https://secure.gravatar.com/avatar/$_hash";
+    return CryptoUtils.bytesToHex(digest);
+
   }
 
   String get email => this._email;
   String get hash => this._hash;
 
+  /**
+   * Returns an image URL for the Gravatar.
+   *
+   *     var gravatar = new Gravatar("hello@blossom.io");
+   *     gravatar.imageUrl(); // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
+   */
   String imageUrl({int size, String defaultImage, bool forceDefault: false, String rating}) {
     String url = "${_imageUrl}?";
     if (size != null) { url = "${url}s=${size}&"; }
