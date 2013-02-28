@@ -1,6 +1,8 @@
 name: gravatar
 version: 1.0.1
-author: Nik Graf <nik@blossom.io>
+authors:
+- Nik Graf <nik@blossom.io>
+- Thomas Schranz <thomas@blossom.io>
 description: Generate Gravatar Image Urls
 homepage: https://github.com/blossom/gravatar
 dependencies:
