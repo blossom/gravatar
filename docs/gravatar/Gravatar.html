@@ -1,0 +1,163 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Gravatar class / gravatar Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="gravatar" data-type="Gravatar">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../gravatar.html">gravatar</a> &rsaquo; <a href="../gravatar/Gravatar.html">Gravatar</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../gravatar.html">gravatar</a></h2><ul class="icon">
+<li><div class="icon-class"></div><strong>Gravatar</strong></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Gravatar</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>An easy-to-use library for generating Gravatar image urls in Dart.</p>
+<pre><span class="k ">var</span> <span class="i ">gravatar</span> <span class="o ">=</span> <span class="k ">new</span> <span class="t ">Gravatar</span><span class="p ">(</span><span class="s si">"hello@blossom.io"</span><span class="p ">)</span><span class="p ">;</span>
+<span class="i ">gravatar</span><span class="p ">.</span><span class="i ">imageUrl</span><span class="p ">(</span><span class="p ">)</span><span class="p ">;</span> <span class="c ">// https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b</span></pre>
+<pre class="source">
+class Gravatar {
+ String _email;
+ String _hash;
+ String _imageUrl;
+
+ Gravatar(this._email) {
+   this._hash = _generateHash(this._email);
+   this._imageUrl = "https://secure.gravatar.com/avatar/${this._hash}";
+ }
+
+ /**
+  * Returns a an MD5 hash of the given email address.
+  *
+  * As described in https://en.gravatar.com/site/implement/hash/
+  * the given email address gets trimmed and lowered before generating the hash
+  */
+ String _generateHash(String email) {
+   String preparedEmail = (email.trim()).toLowerCase();
+   List digest = (new MD5()..add(preparedEmail.charCodes)).close();
+   return CryptoUtils.bytesToHex(digest);
+
+ }
+
+ String get email =&gt; this._email;
+ String get hash =&gt; this._hash;
+
+ /**
+  * Returns an image URL for the Gravatar.
+  *
+  *     var gravatar = new Gravatar("hello@blossom.io");
+  *     gravatar.imageUrl(); // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
+  */
+ String imageUrl({int size, String defaultImage, bool forceDefault: false, String rating}) {
+   String url = "${_imageUrl}?";
+   if (size != null) { url = "${url}s=${size}&amp;"; }
+   if (defaultImage != null) { url = "${url}d=${defaultImage}&amp;"; }
+   if (forceDefault) { url = "${url}f=y&amp;"; }
+   if (rating != null) { url = "${url}r=${rating}&amp;"; }
+   // remove either the '?' or the last '&amp;' for clean urls
+   url = url.substring(0, url.length-1);
+   return url;
+ }
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Gravatar">
+<button class="show-code">Code</button>
+new <strong>Gravatar</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> _email) <a class="anchor-link" href="#Gravatar"
+              title="Permalink to Gravatar.Gravatar">#</a></h4>
+<div class="doc">
+<pre class="source">
+Gravatar(this._email) {
+ this._hash = _generateHash(this._email);
+ this._imageUrl = "https://secure.gravatar.com/avatar/${this._hash}";
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="email">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>email</strong> <a class="anchor-link"
+            href="#email"
+            title="Permalink to Gravatar.email">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+String get email =&gt; this._email;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="hash">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>hash</strong> <a class="anchor-link"
+            href="#hash"
+            title="Permalink to Gravatar.hash">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+String get hash =&gt; this._hash;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="imageUrl">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>imageUrl</strong>({<a href="http://api.dartlang.org/dart_core/int.html">int</a> size, <a href="http://api.dartlang.org/dart_core/String.html">String</a> defaultImage, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> forceDefault: false, <a href="http://api.dartlang.org/dart_core/String.html">String</a> rating}) <a class="anchor-link" href="#imageUrl"
+              title="Permalink to Gravatar.imageUrl">#</a></h4>
+<div class="doc">
+<p>Returns an image URL for the Gravatar.</p>
+<pre><span class="k ">var</span> <span class="i ">gravatar</span> <span class="o ">=</span> <span class="k ">new</span> <span class="t ">Gravatar</span><span class="p ">(</span><span class="s si">"hello@blossom.io"</span><span class="p ">)</span><span class="p ">;</span>
+<span class="i ">gravatar</span><span class="p ">.</span><span class="i ">imageUrl</span><span class="p ">(</span><span class="p ">)</span><span class="p ">;</span> <span class="c ">// https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b</span></pre>
+<pre class="source">
+String imageUrl({int size, String defaultImage, bool forceDefault: false, String rating}) {
+ String url = "${_imageUrl}?";
+ if (size != null) { url = "${url}s=${size}&amp;"; }
+ if (defaultImage != null) { url = "${url}d=${defaultImage}&amp;"; }
+ if (forceDefault) { url = "${url}f=y&amp;"; }
+ if (rating != null) { url = "${url}r=${rating}&amp;"; }
+ // remove either the '?' or the last '&amp;' for clean urls
+ url = url.substring(0, url.length-1);
+ return url;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-03-01 11:38:08.824</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        
