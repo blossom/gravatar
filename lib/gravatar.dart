@@ -9,9 +9,9 @@ import 'dart:crypto';
  *     gravatar.imageUrl(); // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
  */
 class Gravatar {
-  String _email;
-  String _hash;
-  String _imageUrl;
+  final String _email;
+  final String _hash;
+  final String _imageUrl;
 
   Gravatar(this._email) {
     this._hash = _generateHash(this._email);
