@@ -10,25 +10,12 @@ import 'dart:crypto';
  */
 class Gravatar {
   final String _email;
-  final String _hash;
-  final String _imageUrl;
+  String _hash;
+  String _imageUrl;
 
   Gravatar(this._email):
-    this._hash = this._generateHash(this._email),
+    this._hash = _generateHash(this._email),
     this._imageUrl = "https://secure.gravatar.com/avatar/${this._hash}"{
-  }
-
-  /**
-   * Returns a an MD5 hash of the given email address.
-   *
-   * As described in https://en.gravatar.com/site/implement/hash/
-   * the given email address gets trimmed and lowered before generating the hash
-   */
-  String _generateHash(String email) {
-    String preparedEmail = (email.trim()).toLowerCase();
-    List digest = (new MD5()..add(preparedEmail.charCodes)).close();
-    return CryptoUtils.bytesToHex(digest);
-
   }
 
   String get email => this._email;
@@ -50,4 +37,16 @@ class Gravatar {
     url = url.substring(0, url.length-1);
     return url;
   }
+}
+
+  /**
+   * Returns a an MD5 hash of the given email address.
+   *
+   * As described in https://en.gravatar.com/site/implement/hash/
+   * the given email address gets trimmed and lowered before generating the hash
+   */
+String _generateHash(String email) {
+  String preparedEmail = (email.trim()).toLowerCase();
+  List digest = (new MD5()..add(preparedEmail.charCodes)).close();
+  return CryptoUtils.bytesToHex(digest);
 }
