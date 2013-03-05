@@ -14,7 +14,7 @@ class Gravatar {
   final String _imageUrl;
 
   Gravatar(this._email):
-    this._hash = _generateHash(this._email),
+    this._hash = this._generateHash(this._email),
     this._imageUrl = "https://secure.gravatar.com/avatar/${this._hash}"{
   }
 
