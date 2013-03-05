@@ -10,12 +10,11 @@ import 'dart:crypto';
  */
 class Gravatar {
   final String _email;
-  String _hash;
-  String _imageUrl;
+  final String _hash;
 
-  Gravatar(this._email):
-    this._hash = _generateHash(this._email),
-    this._imageUrl = "https://secure.gravatar.com/avatar/${this._hash}"{
+  Gravatar(email):
+    this._email = email,
+    this._hash = _generateHash(email){
   }
 
   String get email => this._email;
@@ -28,7 +27,7 @@ class Gravatar {
    *     gravatar.imageUrl(); // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
    */
   String imageUrl({int size, String defaultImage, bool forceDefault: false, String rating}) {
-    String url = "${_imageUrl}?";
+    String url = "https://secure.gravatar.com/avatar/${_hash}?";
     if (size != null) { url = "${url}s=${size}&"; }
     if (defaultImage != null) { url = "${url}d=${defaultImage}&"; }
     if (forceDefault) { url = "${url}f=y&"; }
