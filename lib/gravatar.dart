@@ -36,6 +36,16 @@ class Gravatar {
     url = url.substring(0, url.length-1);
     return url;
   }
+  
+  /**
+   * Returns an image URL for the Gravatar.
+   * 
+   *     var gravatar = new Gravatar("hello@blossom.io");
+   *     gravatar; // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
+   */
+  String toString() {
+    return this.imageUrl();
+  }
 }
 
   /**
@@ -46,6 +56,6 @@ class Gravatar {
    */
 String _generateHash(String email) {
   String preparedEmail = (email.trim()).toLowerCase();
-  List digest = (new MD5()..add(preparedEmail.charCodes)).close();
+  List digest = (new MD5()..add(preparedEmail.codeUnits)).close();
   return CryptoUtils.bytesToHex(digest);
 }
