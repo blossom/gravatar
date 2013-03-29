@@ -4,7 +4,7 @@ authors:
 - Nik Graf <nik@blossom.io>
 - Thomas Schranz <thomas@blossom.io>
 description: Generate Gravatar Image Urls
-documentation: http://blossom.github.com/gravatar/doc/gravatar/Gravatar.html
 homepage: https://github.com/blossom/gravatar
-dependencies:
+documentation: http://blossom.github.com/gravatar/doc/gravatar/Gravatar.html
+dev_dependencies:
   unittest: any
