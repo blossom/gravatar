@@ -1,6 +1,6 @@
 library gravatar;
 
-import 'dart:crypto';
+import 'package:crypto/crypto.dart';
 
 /**
  * An easy-to-use library for generating Gravatar image urls in Dart.
@@ -36,10 +36,10 @@ class Gravatar {
     url = url.substring(0, url.length-1);
     return url;
   }
-  
+
   /**
    * Returns an image URL for the Gravatar.
-   * 
+   *
    *     var gravatar = new Gravatar("hello@blossom.io");
    *     gravatar; // https://secure.gravatar.com/avatar/658b1158409b348bb2cb3e5bef734d1b
    */
