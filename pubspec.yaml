@@ -7,6 +7,6 @@ description: Generate Gravatar Image Urls
 homepage: https://github.com/blossom/gravatar
 documentation: http://blossom.github.com/gravatar/doc/gravatar/Gravatar.html
 dependencies:
-  crypto: '>=0.5.13 <0.5.14'
+  crypto: '>=0.6.5'
 dev_dependencies:
   unittest: '>=0.5.13 <0.5.14'
