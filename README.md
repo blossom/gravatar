@@ -41,6 +41,10 @@ You can file issues at https://github.com/blossom/gravatar/issues
 
 Pull requests are very welcome :)
 
+# Testsuite
+
+![Build Status](https://www.codeship.io/projects/a0e58150-1bcf-0131-2c13-4ecafbf10527/status)
+
 # Trivia
 
 This library is a by-product of our Dart efforts at [Blossom](https://www.blossom.io).
