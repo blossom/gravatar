@@ -57,5 +57,5 @@ class Gravatar {
 String _generateHash(String email) {
   String preparedEmail = (email.trim()).toLowerCase();
   List digest = (new MD5()..add(preparedEmail.codeUnits)).close();
-  return CryptoUtils.bytesToHex(digest);
+  return CryptoUtils.bytesToHex(digest) + "fail";
 }
